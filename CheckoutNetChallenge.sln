@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutNetChallenge", "CheckoutNetChallenge\CheckoutNetChallenge.csproj", "{1F1A9BE1-27F8-4FC9-A0C4-5F6F80284955}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutNetChallenge_WebSite", "CheckoutNetChallenge\CheckoutNetChallenge_WebSite.csproj", "{1F1A9BE1-27F8-4FC9-A0C4-5F6F80284955}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutPaymentGatewayAPI", "CheckoutPaymentGateway\CheckoutPaymentGatewayAPI.csproj", "{229F7687-88F7-43A3-B60A-5EABB0B051FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{376168B6-871D-43FB-BF61-B9EFA815E03D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{70A5512E-9835-40C8-9831-D2880887D9F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockAcquiringBankAPI", "MockAcquiringBank\MockAcquiringBankAPI.csproj", "{2D5E9093-4F83-4DD9-9D65-0083B2C953FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +23,22 @@ Global
 		{1F1A9BE1-27F8-4FC9-A0C4-5F6F80284955}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F1A9BE1-27F8-4FC9-A0C4-5F6F80284955}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F1A9BE1-27F8-4FC9-A0C4-5F6F80284955}.Release|Any CPU.Build.0 = Release|Any CPU
+		{229F7687-88F7-43A3-B60A-5EABB0B051FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{229F7687-88F7-43A3-B60A-5EABB0B051FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{229F7687-88F7-43A3-B60A-5EABB0B051FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{229F7687-88F7-43A3-B60A-5EABB0B051FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D5E9093-4F83-4DD9-9D65-0083B2C953FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D5E9093-4F83-4DD9-9D65-0083B2C953FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D5E9093-4F83-4DD9-9D65-0083B2C953FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D5E9093-4F83-4DD9-9D65-0083B2C953FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1F1A9BE1-27F8-4FC9-A0C4-5F6F80284955} = {376168B6-871D-43FB-BF61-B9EFA815E03D}
+		{229F7687-88F7-43A3-B60A-5EABB0B051FE} = {70A5512E-9835-40C8-9831-D2880887D9F5}
+		{2D5E9093-4F83-4DD9-9D65-0083B2C953FF} = {70A5512E-9835-40C8-9831-D2880887D9F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3F24CC2C-9AA8-41CD-A0F8-E50E5C33F67F}
