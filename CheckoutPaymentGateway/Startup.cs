@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CheckOutCore.AcquiringSettings;
+using CheckOutCore.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using CheckoutPaymentGatewayAPI.Data;
 
 namespace CheckoutPaymentGateway
 {
@@ -26,6 +30,11 @@ namespace CheckoutPaymentGateway
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.Configure<CheckOutSettings>(Configuration.GetSection("CheckOutSettings"));
+            services.AddSingleton<IHttpClient, CheckOutHttpClient>();
+
+            services.AddDbContext<CheckoutPaymentGatewayAPIContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("CheckoutPaymentGatewayAPIContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
