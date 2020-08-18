@@ -1,52 +1,77 @@
-﻿@model CheckoutPaymentGatewayAPI.Models.CardDetail
+﻿@model CheckOutRepository.Model.CardDetail
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<h4>CardDetail</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Payment Details
+                    </h3>
+                    <div class="checkbox pull-right">
+                        <label>
+                            <input type="checkbox" />
+                            Remember
+                        </label>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="cardNumber">
+                                CARD NUMBER
+                            </label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="cardNumber" placeholder="Valid Card Number"
+                                       required autofocus />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-7 col-md-7">
+                                <div class="form-group">
+                                    <label for="expityMonth">
+                                        EXPIRY DATE
+                                    </label>
+                                    <div class="col-xs-6 col-lg-6 pl-ziro">
+                                        <input type="text" class="form-control" id="expityMonth" placeholder="MM" required />
+                                    </div>
+                                    <div class="col-xs-6 col-lg-6 pl-ziro">
+                                        <input type="text" class="form-control" id="expityYear" placeholder="YY" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-5 col-md-5 pull-right">
+                                <div class="form-group">
+                                    <label for="cvCode">
+                                        CV CODE
+                                    </label>
+                                    <input type="password" class="form-control" id="cvCode" placeholder="CV" required />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="CardNumer" class="control-label"></label>
-                <input asp-for="CardNumer" class="form-control" />
-                <span asp-validation-for="CardNumer" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CardExpiry_Month" class="control-label"></label>
-                <input asp-for="CardExpiry_Month" class="form-control" />
-                <span asp-validation-for="CardExpiry_Month" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CardExpiry_Year" class="control-label"></label>
-                <input asp-for="CardExpiry_Year" class="form-control" />
-                <span asp-validation-for="CardExpiry_Year" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CVV" class="control-label"></label>
-                <input asp-for="CVV" class="form-control" />
-                <span asp-validation-for="CVV" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active">
+                    <a href="#"><span class="badge pull-right"><span class="glyphicon glyphicon-usd"></span>4200</span> Final Payment</a>
+                </li>
+            </ul>
+            <br />
+            <a href="http://www.jquery2dotnet.com" class="btn btn-success btn-lg btn-block" role="button">Pay</a>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

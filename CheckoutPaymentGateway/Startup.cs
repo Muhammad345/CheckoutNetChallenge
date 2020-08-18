@@ -13,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
-using CheckoutPaymentGatewayAPI.Data;
+using CheckOutRepository.Context;
 
 namespace CheckoutPaymentGateway
 {
@@ -30,9 +30,9 @@ namespace CheckoutPaymentGateway
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMvc();
             services.Configure<CheckOutSettings>(Configuration.GetSection("CheckOutSettings"));
             services.AddSingleton<IHttpClient, CheckOutHttpClient>();
-
             services.AddDbContext<CheckoutPaymentGatewayAPIContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("CheckoutPaymentGatewayAPIContext")));
         }
