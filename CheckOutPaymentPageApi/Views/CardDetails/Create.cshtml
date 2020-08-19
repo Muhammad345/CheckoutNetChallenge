@@ -37,15 +37,19 @@
                 <input asp-for="CVV" class="form-control" />
                 <span asp-validation-for="CVV" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control"  readonly/>
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Pay Now" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

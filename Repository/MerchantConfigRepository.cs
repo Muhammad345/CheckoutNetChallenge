@@ -1,5 +1,7 @@
-﻿using CheckOutRepository.Context;
+﻿using CheckOutCore.AcquiringSettings;
+using CheckOutRepository.Context;
 using CheckOutRepository.Model;
+using Microsoft.Extensions.Options;
 using Repository.Models;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,13 @@ namespace Repository
 {
     public class MerchantConfigRepository : BaseRepo, IRepository<MerchantConfig>
     {
+        private readonly MerchantSetting _merchantSetting;
+        
+        public MerchantConfigRepository(IOptions<MerchantSetting> options)
+        {
+            _merchantSetting = options.Value;
+        }
+
         public void Delete(object id)
         {
             var entity = _context.CardDetails.Find(id);
@@ -27,8 +36,8 @@ namespace Repository
             var tempMerchantConfig = new MerchantConfig { 
              AccountId = 1, 
              ApiKey = "Api Key to access System",
-             DeclinedRedirectPageUrl = "https://www.chargebee.com/blog/making-sense-credit-card-declines/",
-             SuccessRedirectPageUrl = "https://dribbble.com/shots/5902176-Payment-Success-page"
+             DeclinedRedirectPageUrl = _merchantSetting.DeclinedUrl,
+             SuccessRedirectPageUrl = _merchantSetting.SuccessFullUrl
             };
 
             return tempMerchantConfig;

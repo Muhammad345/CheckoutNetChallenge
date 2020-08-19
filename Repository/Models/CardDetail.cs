@@ -31,5 +31,8 @@ namespace CheckOutRepository.Model
 
         [JsonProperty("cvv")]
         public string CVV { get; set; }
+
+        [JsonProperty("amount")]
+        public decimal Amount { get; set; }
     }
 }

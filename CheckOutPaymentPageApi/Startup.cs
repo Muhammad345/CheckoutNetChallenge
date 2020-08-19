@@ -36,6 +36,7 @@ namespace CheckOutPaymentPageApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CheckOutSettings>(Configuration.GetSection("CheckOutSettings"));
+            services.Configure<MerchantSetting>(Configuration.GetSection("MerchantSetting"));
             services.AddControllersWithViews().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CardDetailValidator>());
 
             services.AddTransient<IValidator<CardDetail>, CardDetailValidator>();

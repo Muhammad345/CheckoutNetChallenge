@@ -12,6 +12,8 @@ using Repository.Models;
 using Core.IServices;
 using CheckOutPaymentPageApi.Models;
 using Repository.Constants;
+using Newtonsoft.Json;
+using CheckOutCore.Domain;
 
 namespace CheckOutPaymentPageApi.Controllers
 {
@@ -38,7 +40,9 @@ namespace CheckOutPaymentPageApi.Controllers
                 CVV = "123",
                 MerchantId = 1,
                 Id = 1,
-                Name = "Irfan Akhtar"
+                Name = "Irfan Akhtar",
+                Amount = 10.00m
+
             };
 
             // Decliend Mock
@@ -72,7 +76,7 @@ namespace CheckOutPaymentPageApi.Controllers
                 var cardApiResponse = await _cardApiService.ChargeCard(cardDetail);
                 if(cardApiResponse.IsSuccessFull)
                 {
-                    var cardPaymentStatus = (CardPaymentResponse)cardApiResponse.Data;
+                    var cardPaymentStatus = JsonConvert.DeserializeObject<CardPaymentResponse>(cardApiResponse.Data);
                     if (cardPaymentStatus.Status == CheckOutAppConstants.PaymentStatus.Accepted)
                     {
                         return Redirect(merchantConfigs.SuccessRedirectPageUrl);
