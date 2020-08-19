@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckoutNetChallenge_WebSite", "CheckoutNetChallenge\CheckoutNetChallenge_WebSite.csproj", "{1F1A9BE1-27F8-4FC9-A0C4-5F6F80284955}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckoutPaymentGatewayAPI", "CheckoutPaymentGateway\CheckoutPaymentGatewayAPI.csproj", "{229F7687-88F7-43A3-B60A-5EABB0B051FE}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd_Merchant", "FrontEnd_Merchant", "{376168B6-871D-43FB-BF61-B9EFA815E03D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CheckoutBackEnd_API", "CheckoutBackEnd_API", "{70A5512E-9835-40C8-9831-D2880887D9F5}"
@@ -29,11 +27,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "Integra
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{C192FCB7-90A8-4F23-B096-946C48A318C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryTests", "RepositoryTests\RepositoryTests.csproj", "{3023D69E-CE3C-404C-951A-654D8C6BD090}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryTests", "RepositoryTests\RepositoryTests.csproj", "{3023D69E-CE3C-404C-951A-654D8C6BD090}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreTests", "CoreTests\CoreTests.csproj", "{AADFBFD7-FD07-4DE6-862B-7C16D32FB566}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreTests", "CoreTests\CoreTests.csproj", "{AADFBFD7-FD07-4DE6-862B-7C16D32FB566}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutPaymentGatewayAPIIntegrationTests", "CheckoutPaymentGatewayAPIIntegrationTests\CheckoutPaymentGatewayAPIIntegrationTests.csproj", "{C860CADA-B396-4C7E-ABA6-9C1E694049EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckoutPaymentGatewayAPIIntegrationTests", "CheckoutPaymentGatewayAPIIntegrationTests\CheckoutPaymentGatewayAPIIntegrationTests.csproj", "{C860CADA-B396-4C7E-ABA6-9C1E694049EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckOutPaymentPageApi", "CheckOutPaymentPageApi\CheckOutPaymentPageApi.csproj", "{7EE4D887-7305-4C36-BFB0-BB5C6FAF3C02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +45,6 @@ Global
 		{1F1A9BE1-27F8-4FC9-A0C4-5F6F80284955}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F1A9BE1-27F8-4FC9-A0C4-5F6F80284955}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F1A9BE1-27F8-4FC9-A0C4-5F6F80284955}.Release|Any CPU.Build.0 = Release|Any CPU
-		{229F7687-88F7-43A3-B60A-5EABB0B051FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{229F7687-88F7-43A3-B60A-5EABB0B051FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{229F7687-88F7-43A3-B60A-5EABB0B051FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{229F7687-88F7-43A3-B60A-5EABB0B051FE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2D5E9093-4F83-4DD9-9D65-0083B2C953FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2D5E9093-4F83-4DD9-9D65-0083B2C953FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D5E9093-4F83-4DD9-9D65-0083B2C953FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -77,13 +73,16 @@ Global
 		{C860CADA-B396-4C7E-ABA6-9C1E694049EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C860CADA-B396-4C7E-ABA6-9C1E694049EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C860CADA-B396-4C7E-ABA6-9C1E694049EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EE4D887-7305-4C36-BFB0-BB5C6FAF3C02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EE4D887-7305-4C36-BFB0-BB5C6FAF3C02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EE4D887-7305-4C36-BFB0-BB5C6FAF3C02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EE4D887-7305-4C36-BFB0-BB5C6FAF3C02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1F1A9BE1-27F8-4FC9-A0C4-5F6F80284955} = {376168B6-871D-43FB-BF61-B9EFA815E03D}
-		{229F7687-88F7-43A3-B60A-5EABB0B051FE} = {70A5512E-9835-40C8-9831-D2880887D9F5}
 		{2D5E9093-4F83-4DD9-9D65-0083B2C953FF} = {71DA236D-2D4B-4449-8D41-71BEF8D46394}
 		{03BE3B15-7C02-4D96-AB88-D3BB7966217B} = {04EC93F8-56AB-42CD-AF96-77D6A731E507}
 		{2B72C340-DECB-4668-B269-4E35AB7D7891} = {70A5512E-9835-40C8-9831-D2880887D9F5}
@@ -94,6 +93,7 @@ Global
 		{3023D69E-CE3C-404C-951A-654D8C6BD090} = {C192FCB7-90A8-4F23-B096-946C48A318C7}
 		{AADFBFD7-FD07-4DE6-862B-7C16D32FB566} = {C192FCB7-90A8-4F23-B096-946C48A318C7}
 		{C860CADA-B396-4C7E-ABA6-9C1E694049EE} = {D954D14F-44E8-4CD1-934C-056176018BA3}
+		{7EE4D887-7305-4C36-BFB0-BB5C6FAF3C02} = {70A5512E-9835-40C8-9831-D2880887D9F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3F24CC2C-9AA8-41CD-A0F8-E50E5C33F67F}
