@@ -29,7 +29,10 @@ namespace MockAcquiringBankAPI.Data
         }
         public MockCard GetCard(string cardNumber)
         {
-           return  ValidCard.Find(x => x.CardNumer.Contains(cardNumber));
+            if(string.IsNullOrWhiteSpace(cardNumber))
+             return  ValidCard.Find(x => x.CardNumer.Contains(cardNumber));
+
+            return null;
         }
 
         public bool IsEnoughFoundAvailable(string cardNumber)

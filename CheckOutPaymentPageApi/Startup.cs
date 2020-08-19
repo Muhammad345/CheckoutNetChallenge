@@ -2,8 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CheckOutCore.AcquiringSettings;
+using CheckOutCore.Client;
 using CheckOutRepository.Context;
 using CheckOutRepository.Model;
+using Core.IServices;
+using Core.Servcies;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -13,6 +17,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Repository;
+using Repository.Models;
 using Repository.Validation;
 
 namespace CheckOutPaymentPageApi
@@ -29,12 +35,26 @@ namespace CheckOutPaymentPageApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<CheckOutSettings>(Configuration.GetSection("CheckOutSettings"));
             services.AddControllersWithViews().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CardDetailValidator>());
-            
+
             services.AddTransient<IValidator<CardDetail>, CardDetailValidator>();
+            services.AddSingleton<IHttpClient, CheckOutHttpClient>();
+            AddRepositoryDependencies(services);
+            AddServicesDependencies(services);
 
             services.AddDbContext<CheckoutPaymentGatewayAPIContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CheckOutSqlContext"))
              .EnableSensitiveDataLogging());
+        }
+
+        private static void AddRepositoryDependencies(IServiceCollection services)
+        {
+            services.AddTransient<IRepository<MerchantConfig>, MerchantConfigRepository>();
+        }
+
+        private static void AddServicesDependencies(IServiceCollection services)
+        {
+            services.AddTransient<ICardApiService, CardApiService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

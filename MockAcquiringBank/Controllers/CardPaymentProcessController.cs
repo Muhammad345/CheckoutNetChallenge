@@ -30,7 +30,7 @@ namespace MockAcquiringBankAPI.Controllers
         [HttpPost]
         public CardPaymentResponse Post(CardDetail cardDetail)
         {
-            var foundAvailable = GetTestCard.IsEnoughFoundAvailable(cardDetail.Cardnumber);
+            var foundAvailable = GetTestCard.IsEnoughFoundAvailable(cardDetail.CardNumber);
 
             if(foundAvailable)
             {

@@ -14,5 +14,11 @@ namespace Repository.Constants
             public const string Cvv = "Must be vaid not greater then 3 number.";
             public const string CardHolderName = "Name Must be valid.";
         }
+        public static class PaymentStatus
+        {
+            public const string Accepted = "Accepted";
+            public const string Declined = "Declined";
+        }
+            
     }
 }

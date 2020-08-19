@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CheckOutRepository.Model;
 using Microsoft.EntityFrameworkCore;
+using Repository.Models;
 
 namespace CheckOutRepository.Context
 {
@@ -29,6 +30,7 @@ namespace CheckOutRepository.Context
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
-        public DbSet<CardDetail> CardDetail { get; set; }
+        public DbSet<CardDetail> CardDetails { get; set; }
+        public DbSet<MerchantConfig> MerchantConfigs { get; set; }
     }
 }

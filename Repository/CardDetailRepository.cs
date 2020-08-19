@@ -11,19 +11,19 @@ namespace Repository
     {
         public void Delete(object id)
         {
-            var cardDetail = _context.CardDetail.Find(id);
-            _context.CardDetail.Remove(cardDetail);
+            var cardDetail = _context.CardDetails.Find(id);
+            _context.CardDetails.Remove(cardDetail);
             _context.SaveChanges();
         }
 
         public IEnumerable<CardDetail> GetAll()
         {
-            return _context.CardDetail.ToList();
+            return _context.CardDetails.ToList();
         }
 
         public CardDetail GetById(object id)
         {
-            var cardDetail =  _context.CardDetail.Find(id);
+            var cardDetail =  _context.CardDetails.Find(id);
             return cardDetail;
         }
 
