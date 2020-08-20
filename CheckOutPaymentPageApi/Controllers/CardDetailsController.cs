@@ -71,7 +71,7 @@ namespace CheckOutPaymentPageApi.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MerchantId,Id,Name,CardNumber,CardExpiry_Month,CardExpiry_Year,CVV,Amount")] CardDetail cardDetail)
+        public async Task<IActionResult> Create([Bind("MerchantId,AccountId,Id,Name,CardNumber,CardExpiry_Month,CardExpiry_Year,CVV,Amount")] CardDetail cardDetail)
         {
             if (ModelState.IsValid)
             {
