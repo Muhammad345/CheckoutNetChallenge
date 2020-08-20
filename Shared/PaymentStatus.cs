@@ -4,8 +4,8 @@ namespace Shared
 {
     public static class PaymentStatus
     {
-        public const string Successfull = "Successfull";
-        public const string Failed = "Failed";
+        public const string Accepted = "Accepted";
+        public const string Declined = "Declined";
         public const string Invalid = "Invalid";
     }
 }
