@@ -8,7 +8,7 @@ namespace Repository
     {
         IEnumerable<T> GetAll();
         T GetById(object id);
-        void Insert(T obj);
+        int Insert(T obj);
         void Update(T obj);
         void Delete(object id);
     }

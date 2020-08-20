@@ -9,6 +9,10 @@ namespace Repository
 {
     public class CardDetailRepository : BaseRepo, IRepository<CardDetail>
     {
+        public CardDetailRepository(CheckoutPaymentGatewayAPIContext context)
+        {
+            _context = context;
+        }
         public void Delete(object id)
         {
             var cardDetail = _context.CardDetails.Find(id);
@@ -27,10 +31,12 @@ namespace Repository
             return cardDetail;
         }
 
-        public void Insert(CardDetail obj)
+        public int Insert(CardDetail obj)
         {
             _context.Add(obj);
             _context.SaveChanges();
+
+            return obj.Id;
         }
 
         public void Update(CardDetail obj)

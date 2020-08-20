@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,6 +15,10 @@ namespace CheckOutRepository.Model
 
         [JsonProperty("merchantId")]
         public int MerchantId { get; set; }
+
+        [JsonProperty("accountId")]
+        public int AccountId { get; set; }
+
         [Key]
         public int Id { get; set; }
 
@@ -33,6 +38,7 @@ namespace CheckOutRepository.Model
         public string CVV { get; set; }
 
         [JsonProperty("amount")]
+        [Column(TypeName = "decimal(18,4)")]
         public decimal Amount { get; set; }
     }
 }

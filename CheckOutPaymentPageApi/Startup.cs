@@ -51,6 +51,8 @@ namespace CheckOutPaymentPageApi
         private static void AddRepositoryDependencies(IServiceCollection services)
         {
             services.AddTransient<IRepository<MerchantConfig>, MerchantConfigRepository>();
+            services.AddTransient<IRepository<CardDetail>, CardDetailRepository>();
+            services.AddTransient<IRepository<PaymentHistory>, PaymentHistoryRepository>();
         }
 
         private static void AddServicesDependencies(IServiceCollection services)
@@ -84,6 +86,21 @@ namespace CheckOutPaymentPageApi
                     name: "default",
                     pattern: "{controller=CardDetails}/{action=Create}/{id?}");
             });
+
+            UpdateDatabase(app);
+        }
+
+        private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices
+                .GetRequiredService<IServiceScopeFactory>()
+                .CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<CheckoutPaymentGatewayAPIContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
         }
     }
 }

@@ -13,10 +13,11 @@ namespace Repository
     public class MerchantConfigRepository : BaseRepo, IRepository<MerchantConfig>
     {
         private readonly MerchantSetting _merchantSetting;
-        
-        public MerchantConfigRepository(IOptions<MerchantSetting> options)
+
+        public MerchantConfigRepository(IOptions<MerchantSetting> options, CheckoutPaymentGatewayAPIContext context)
         {
             _merchantSetting = options.Value;
+            _context = context;
         }
 
         public void Delete(object id)
@@ -46,10 +47,12 @@ namespace Repository
             //return entity;
         }
 
-        public void Insert(MerchantConfig obj)
+        public int Insert(MerchantConfig obj)
         {
             _context.Add(obj);
             _context.SaveChanges();
+
+            return obj.Id;
         }
 
         public void Update(MerchantConfig obj)
