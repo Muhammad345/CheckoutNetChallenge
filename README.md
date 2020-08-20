@@ -7,6 +7,7 @@ Add Data service and use those services to Reterive Data from Repository
 Cover All Business Logic with Unite and Integration test .
 
 Add Validation at Data services level .
+Add  Structure Logging in App 
 
 I made few assumption .
 
