@@ -14,5 +14,5 @@ Payment page hosted and Merchant redirect from their website to get requried pay
 
 External ref will be unique for each activity which link merchant to checkout record and checkout record use that to link with Acquire bank detail .
 
-Merchant redirect to theri sucess and failer page where they can handler further logic like notificaion etc .
+Merchant redirect to their success and failer page where they can handler further logic like notificaion etc .
 
