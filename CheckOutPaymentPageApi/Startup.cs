@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CheckOutCore.AcquiringSettings;
+using AutoMapper;
 using CheckOutCore.Client;
 using CheckOutRepository.Context;
 using CheckOutRepository.Model;
@@ -20,6 +20,7 @@ using Microsoft.Extensions.Hosting;
 using Repository;
 using Repository.Models;
 using Repository.Validation;
+using Shared;
 
 namespace CheckOutPaymentPageApi
 {
@@ -46,18 +47,34 @@ namespace CheckOutPaymentPageApi
 
             services.AddDbContext<CheckoutPaymentGatewayAPIContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CheckOutSqlContext"))
              .EnableSensitiveDataLogging());
+
+            services.AddAutoMapper(GetAutoMapperProfilesFromAllAssemblies()
+                .ToArray());
+        }
+
+        private static IEnumerable<Type> GetAutoMapperProfilesFromAllAssemblies()
+        {
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                foreach (var aType in assembly.GetTypes())
+                {
+                    if (aType.IsClass && !aType.IsAbstract && aType.IsSubclassOf(typeof(Profile)))
+                        yield return aType;
+                }
+            }
         }
 
         private static void AddRepositoryDependencies(IServiceCollection services)
         {
             services.AddTransient<IRepository<MerchantConfig>, MerchantConfigRepository>();
             services.AddTransient<IRepository<CardDetail>, CardDetailRepository>();
-            services.AddTransient<IRepository<PaymentHistory>, PaymentHistoryRepository>();
+            services.AddTransient<IRepository<PaymentDetail>, PaymentDetailRepository>();
         }
 
         private static void AddServicesDependencies(IServiceCollection services)
         {
             services.AddTransient<ICardApiService, CardApiService>();
+            services.AddTransient<IPaymentDetailDataService, PaymentDetailDataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

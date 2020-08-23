@@ -7,9 +7,10 @@ using Core.Servcies;
 using Moq;
 using Newtonsoft.Json;
 using NUnit.Framework;
+using Shared;
 using System;
 using System.Net;
-using static Repository.Constants.CheckOutAppConstants;
+using static Shared.CheckOutAppConstants;
 
 namespace CoreTests
 {
@@ -21,7 +22,7 @@ namespace CoreTests
         private int _merchantId;
         private Guid _externalRefId;
         private CardPaymentResponse _cardPaymentResponse;
-        private CardDetail _cardDetail;
+        private CardPaymentDetail _cardDetail;
         private CheckOutHttpClientResponse _checkOutHttpClientResponse;
         private ICardApiService _cardApiService;
         private readonly Mock<IHttpClient> _mockcheckoutHttpClient;
@@ -42,10 +43,10 @@ namespace CoreTests
                 Status = "Accepted"
             };
 
-            _cardDetail = new CardDetail
+            _cardDetail = new CardPaymentDetail
             { 
-                AccountId = _accountId,
-                MerchantId = _merchantId,
+                //AccountId = _accountId,
+                //MerchantId = _merchantId,
                 CardNumber = _cardNumer,
                 CardExpiry_Month = "02",
                 CardExpiry_Year ="2020",
@@ -59,7 +60,7 @@ namespace CoreTests
             _checkOutHttpClientResponse.StatusCode = HttpStatusCode.OK ;
             _url = "anyURL";
             //_mockcheckoutHttpClient = new Mock<IHttpClient>().Object;
-            _mockcheckoutHttpClient.Setup(x => x.Post<CardDetail, CheckOutHttpClientResponse>(_url, _cardDetail)).ReturnsAsync(_checkOutHttpClientResponse);
+            _mockcheckoutHttpClient.Setup(x => x.Post<CardPaymentDetail, CheckOutHttpClientResponse>(_url, _cardDetail)).ReturnsAsync(_checkOutHttpClientResponse);
             _cardApiService = new CardApiService(_mockcheckoutHttpClient.Object);
         }
 

@@ -1,8 +1,8 @@
-﻿using CheckOutCore.AcquiringSettings;
-using CheckOutRepository.Context;
+﻿using CheckOutRepository.Context;
 using CheckOutRepository.Model;
 using Microsoft.Extensions.Options;
 using Repository.Models;
+using Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;

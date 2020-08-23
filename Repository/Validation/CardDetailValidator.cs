@@ -1,5 +1,6 @@
 ﻿using CheckOutRepository.Model;
 using FluentValidation;
+using Shared;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,7 +11,7 @@ namespace Repository.Validation
     {
 		public CardDetailValidator()
 		{
-			RuleFor(x => x.Name).MinimumLength(3).WithMessage(Constants.CheckOutAppConstants.ValidationMessage.CardHolderName);
+			RuleFor(x => x.Name).MinimumLength(3).WithMessage(CheckOutAppConstants.ValidationMessage.CardHolderName);
 		}
 	}
 }

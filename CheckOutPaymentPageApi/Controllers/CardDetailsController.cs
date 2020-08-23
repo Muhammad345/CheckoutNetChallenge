@@ -11,56 +11,54 @@ using Repository;
 using Repository.Models;
 using Core.IServices;
 using CheckOutPaymentPageApi.Models;
-using Repository.Constants;
 using Newtonsoft.Json;
 using CheckOutCore.Domain;
+using AutoMapper;
+using Shared;
 
 namespace CheckOutPaymentPageApi.Controllers
 {
     public class CardDetailsController : Controller
     {
         private readonly IRepository<MerchantConfig> _merchantConfigRepository;
-        private readonly IRepository<PaymentHistory> _paymentHistoryRepository;
-        private readonly IRepository<CardDetail> _cardDetailRepository;
+        private readonly ICardApiService _cardApiService;
+        private readonly IPaymentDetailDataService _paymentDetailDataService;
         
 
-        private readonly ICardApiService _cardApiService;
-
-        public CardDetailsController(IRepository<MerchantConfig> merchantConfig, IRepository<PaymentHistory> paymentHistory, IRepository<CardDetail> cardDetailRepository, ICardApiService cardApiService)
+        public CardDetailsController(IRepository<MerchantConfig> merchantConfig, ICardApiService cardApiService, IPaymentDetailDataService paymentDetailDataService)
         {
             _merchantConfigRepository = merchantConfig;
-            _paymentHistoryRepository = paymentHistory;
-            _cardDetailRepository = cardDetailRepository;
             _cardApiService = cardApiService;
+            _paymentDetailDataService = paymentDetailDataService;
         }
 
         // GET: CardDetails/Create
         public IActionResult Create()
         {
             // Success Mock 
-            var cardDetail = new CardDetail {
-                CardNumber = "1234 5678 9801 1789",
+            var cardDetail = new CardPaymentDetail
+            {
+                CardNumber = "1234567898011789",
                 CardExpiry_Month = "06",
                 CardExpiry_Year = "2020",
                 CVV = "123",
                 MerchantId = 1,
                 AccountId = 1,
-                Id = 1,
                 Name = "Irfan Akhtar",
                 Amount = 10.00m
-
             };
 
             // Decliend Mock
-            //var cardDetail = new CardDetail
+            //var cardDetail = new CardPaymentDetail
             //{
-            //    CardNumber = "8963 5678 9801 1789",
+            //    CardNumber = "3322 5678 9801 1789",
             //    CardExpiry_Month = "06",
             //    CardExpiry_Year = "2020",
             //    CVV = "123",
             //    MerchantId = 1,
-            //    Id = 1,
-            //    Name = "Irfan Akhtar"
+            //    AccountId = 1,
+            //    Name = "Irfan Akhtar",
+            //    Amount = 10.00m
             //};
 
             return View(cardDetail);
@@ -71,34 +69,35 @@ namespace CheckOutPaymentPageApi.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MerchantId,AccountId,Id,Name,CardNumber,CardExpiry_Month,CardExpiry_Year,CVV,Amount")] CardDetail cardDetail)
+        public async Task<IActionResult> Create([Bind("MerchantId,AccountId,Id,Name,CardNumber,CardExpiry_Month,CardExpiry_Year,CVV,Amount")] CardPaymentDetail cardPaymentDetail)
         {
             if (ModelState.IsValid)
             {
-                cardDetail.ExternalRefId = Guid.NewGuid();
+                cardPaymentDetail.ExternalRefId = Guid.NewGuid();
 
-                var merchantConfigs =_merchantConfigRepository.GetById(cardDetail.MerchantId);
+                var merchantConfigs =_merchantConfigRepository.GetById(cardPaymentDetail.MerchantId);
 
-                var cardApiResponse = await _cardApiService.ChargeCard(cardDetail);
-                if(cardApiResponse.IsSuccessFull)
+                var cardApiResponse = await _cardApiService.ChargeCard(cardPaymentDetail);
+
+                if (cardApiResponse.IsSuccessFull)
                 {
                     var cardPaymentStatus = JsonConvert.DeserializeObject<CardPaymentResponse>(cardApiResponse.Data);
 
-                    var cardDetailId = _cardDetailRepository.Insert(cardDetail);
-                    _paymentHistoryRepository.Insert(new PaymentHistory { Amount = cardDetail.Amount, ExternalRefId = cardDetail.ExternalRefId, Status = cardPaymentStatus.Status, CardDetailId = cardDetailId });
+                    // Ideal for this type of situation to use Service bus or some sort of message queue 
+                    var serviceResponse =_paymentDetailDataService.Save(cardPaymentDetail, cardPaymentStatus.Status);
 
                     if (cardPaymentStatus.Status == CheckOutAppConstants.PaymentStatus.Accepted)
-                    {  
+                    {
                         return Redirect(merchantConfigs.SuccessRedirectPageUrl);
                     }
-                    else if(cardPaymentStatus.Status == CheckOutAppConstants.PaymentStatus.Declined)
+                    else if (cardPaymentStatus.Status == CheckOutAppConstants.PaymentStatus.Declined)
                     {
                         return Redirect(merchantConfigs.DeclinedRedirectPageUrl);
                     }
                 }
             }
 
-            return View(cardDetail);
+            return View(cardPaymentDetail);
         }
     }
 }

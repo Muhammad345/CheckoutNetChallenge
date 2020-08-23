@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MockAcquiringBankAPI.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace MockAcquiringBankAPI.Data
             ValidCard  = new List<MockCard>
             {
                 new MockCard{
-                 CardNumer = "1234 5678 9801 1789",
+                 CardNumer = "1234567898011789",
                   Balance = 50200,
                   Id = 1
                 }
@@ -25,7 +26,8 @@ namespace MockAcquiringBankAPI.Data
         {
             if(!string.IsNullOrWhiteSpace(cardNumber))
             {
-                var cardInfo = ValidCard.Find(x => x.CardNumer.Contains(cardNumber, StringComparison.InvariantCultureIgnoreCase));
+                var cardInfo = ValidCard.SingleOrDefault(x => x.CardNumer == cardNumber);
+
                 return cardInfo;
             }
              
@@ -33,11 +35,11 @@ namespace MockAcquiringBankAPI.Data
             return null;
         }
 
-        public bool IsEnoughFoundAvailable(string cardNumber)
+        public bool IsEnoughFoundAvailable(CardPaymentDetail cardDetail)
         {
-            var mockCard = GetCard(cardNumber);
+            var mockCard = GetCard(cardDetail.CardNumber);
 
-            if(mockCard?.Balance > 0)
+            if(mockCard?.Balance > cardDetail.Amount)
             {
                 return true;
             }

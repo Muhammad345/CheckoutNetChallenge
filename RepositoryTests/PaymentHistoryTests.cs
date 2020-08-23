@@ -7,13 +7,13 @@ namespace RepositoryTests
 {
     public class PaymentHistoryTests
     {
-        private IRepository<PaymentHistory> _paymentHistoryRepository;
+        private IRepository<PaymentDetail> _paymentHistoryRepository;
         private CheckoutPaymentGatewayAPIContext _context;
 
         [SetUp]
         public void Setup()
         {
-            _paymentHistoryRepository = new PaymentHistoryRepository(_context);
+            _paymentHistoryRepository = new PaymentDetailRepository(_context);
         }
 
         [Test]

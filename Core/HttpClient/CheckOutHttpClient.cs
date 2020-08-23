@@ -6,8 +6,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using CheckOutCore.Domain;
-using CheckOutCore.AcquiringSettings;
 using CheckOutCore.Constant;
+using Shared;
 
 namespace CheckOutCore.Client
 {

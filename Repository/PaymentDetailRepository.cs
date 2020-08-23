@@ -1,5 +1,4 @@
-﻿using CheckOutCore.AcquiringSettings;
-using CheckOutRepository.Context;
+﻿using CheckOutRepository.Context;
 using CheckOutRepository.Model;
 using Microsoft.Extensions.Options;
 using Repository.Models;
@@ -10,9 +9,9 @@ using System.Text;
 
 namespace Repository
 {
-    public class PaymentHistoryRepository : BaseRepo, IRepository<PaymentHistory>
+    public class PaymentDetailRepository : BaseRepo, IRepository<PaymentDetail>
     {         
-        public PaymentHistoryRepository(CheckoutPaymentGatewayAPIContext context)
+        public PaymentDetailRepository(CheckoutPaymentGatewayAPIContext context)
         {
             _context = context;
         }
@@ -24,18 +23,23 @@ namespace Repository
             _context.SaveChanges();
         }
 
-        public IEnumerable<PaymentHistory> GetAll()
+        public IEnumerable<PaymentDetail> GetAll()
         {
             return _context.PaymentHistory.ToList();
         }
 
-        public PaymentHistory GetById(object id)
+        //public IEnumerable<PaymentDetail> GetBy(int merchantId,int accountId)
+        //{
+        //    return _context.PaymentHistory.Where(x=>x.MerchantId == merchantId && x.AccountId == accountId).ToList();
+        //}
+
+        public PaymentDetail GetById(object id)
         {
             var entity = _context.PaymentHistory.Find(id);
             return entity;
         }
 
-        public int Insert(PaymentHistory obj)
+        public int Insert(PaymentDetail obj)
         {
             _context.Add(obj);
             _context.SaveChanges();
@@ -43,7 +47,7 @@ namespace Repository
             return obj.Id;
         }
 
-        public void Update(PaymentHistory obj)
+        public void Update(PaymentDetail obj)
         {
             _context.Update(obj);
             _context.SaveChangesAsync();

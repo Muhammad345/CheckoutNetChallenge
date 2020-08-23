@@ -1,4 +1,4 @@
-﻿@model CheckOutRepository.Model.CardDetail
+﻿@model Shared.CardPaymentDetail
 
 @{
     ViewData["Title"] = "Create";
@@ -62,7 +62,3 @@
         </form>
     </div>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

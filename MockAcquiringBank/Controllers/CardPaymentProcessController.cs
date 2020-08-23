@@ -28,9 +28,9 @@ namespace MockAcquiringBankAPI.Controllers
 
         // POST: api/CardPaymentProcess
         [HttpPost]
-        public CardPaymentResponse Post(CardDetail cardDetail)
+        public CardPaymentResponse Post(CardPaymentDetail cardDetail)
         {
-            var foundAvailable = GetTestCard.IsEnoughFoundAvailable(cardDetail.CardNumber);
+            var foundAvailable = GetTestCard.IsEnoughFoundAvailable(cardDetail);
 
             if(foundAvailable)
             {

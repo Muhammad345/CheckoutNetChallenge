@@ -33,6 +33,6 @@ namespace CheckOutRepository.Context
         public DbSet<CardDetail> CardDetails { get; set; }
         public DbSet<MerchantConfig> MerchantConfigs { get; set; }
 
-        public DbSet<PaymentHistory> PaymentHistory { get; set; }
+        public DbSet<PaymentDetail> PaymentHistory { get; set; }
     }
 }

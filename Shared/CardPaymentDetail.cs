@@ -1,23 +1,22 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CheckOutRepository.Model
+namespace Shared
 {
-    public class CardDetail
+    public class CardPaymentDetail
     {
-        [Key]
-        public int Id { get; set; }
+        [JsonProperty("merchantId")]
+        public int MerchantId { get; set; }
+
+        [JsonProperty("accountId")]
+        public int AccountId { get; set; }
 
         [JsonProperty("externalRefId")]
         public Guid ExternalRefId { get; set; }
-
-        [JsonProperty("paymentDetailId")]
-        public int PaymentDetailId { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -33,5 +32,9 @@ namespace CheckOutRepository.Model
 
         [JsonProperty("cvv")]
         public string CVV { get; set; }
+
+        [JsonProperty("amount")]
+        [Column(TypeName = "decimal(18,4)")]
+        public decimal Amount { get; set; }
     }
 }

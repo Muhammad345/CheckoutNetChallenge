@@ -2,6 +2,7 @@
 using CheckOutCore.Domain;
 using CheckOutRepository.Model;
 using Core.IServices;
+using Shared;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,10 +18,10 @@ namespace Core.Servcies
         {
             _acquiringBankHttpClient = acquiringBankHttpClient;
         }
-        public async Task<CheckOutHttpClientResponse> ChargeCard(CardDetail cardDetail)
+        public async Task<CheckOutHttpClientResponse> ChargeCard(CardPaymentDetail cardPaymentDetail)
         {
             var endPoint = "API/CardPaymentProcess";
-            return  await _acquiringBankHttpClient.Post<CardDetail, CheckOutHttpClientResponse>(endPoint, cardDetail);
+            return  await _acquiringBankHttpClient.Post<CardPaymentDetail, CheckOutHttpClientResponse>(endPoint, cardPaymentDetail);
            
         }
     }

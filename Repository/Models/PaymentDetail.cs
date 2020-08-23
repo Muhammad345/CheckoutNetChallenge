@@ -8,13 +8,16 @@ using System.Threading.Tasks;
 
 namespace CheckOutRepository.Model
 {
-    public class PaymentHistory
+    public class PaymentDetail
     {
         [Key]
         public int Id { get; set; }
 
-        [JsonProperty("cardDetailId")]
-        public int CardDetailId { get; set; }
+        [JsonProperty("merchantId")]
+        public int MerchantId { get; set; }
+
+        [JsonProperty("accountId")]
+        public int AccountId { get; set; }
 
         [JsonProperty("externalRefId")]
         public Guid ExternalRefId { get; set; }
