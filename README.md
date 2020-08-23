@@ -1,15 +1,19 @@
 # CheckoutNetChallenge
 
-I added Testable code , I will add all Basic test . Unite and integration Test .
+Future work which i conider to coplete this Task End to End
 
-Need to Add Tests to cover basic scenarios
+Add Data service and use those services to Reterive Data from Repository 
 
-Consider Payment page is hosted in Checkout Environment .
+Cover All Business Logic with Unite and Integration test .
 
-Pleaes run All together .
+Add Validation at Data services level .
+Add  Structure Logging in App 
 
-Future work I will do 
-Add all test to cover all business logic 
-Add repo to store Data in Database .
-To Conver Requested Task .
+I made few assumption .
+
+Payment page hosted and Merchant redirect from their website to get requried payment .
+
+External ref will be unique for each activity which link merchant to checkout record and checkout record use that to link with Acquire bank detail .
+
+Merchant redirect to their success and failer page where they can handler further logic like notificaion etc .
 
